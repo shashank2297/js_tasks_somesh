@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: lightpink;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 40vw;
+            font-size: 30px;
+        }
+
+        .clock {
+            display: flex;
+            position: relative;
+        }
+
+        span {
+            display: flex;
+            background-color: white;
+            margin-right: 10px;
+            font-size: 60px;
+            padding: 5px;
+        }
+
+        .talign {
+            display: flex;
+            justify-content: center;
+            opacity: 0.7;
+        }
+
+        .salign {
+            background-color: violet;
+            font-size: 25px;
+            padding: 10px;
+            text-transform: uppercase;
+        }
+
+        #ampm {
+            font-size: 35px;
+            position: absolute;
+            bottom: 0;
+            background-color: rgb(16, 230, 16);
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Digital Clock</h2>
+    <div class="clock">
+        <div>
+            <span class="talign" id="hr"></span>
+            <span class="salign">hours</span>
+        </div>
+        <div>
+            <span class="talign" id="min"></span>
+            <span class="salign">minutes</span>
+        </div>
+        <div>
+            <span class="talign" id="sec"></span>
+            <span class="salign">seconds</span>
+        </div>
+        <div>
+            <span id="ampm"></span>
+        </div>
+    </div>
+    <script>
+        function updateclock() {
+            let Currentdate = new Date();
+            let Currenthours = Currentdate.getHours();
+            let Currentminute = Currentdate.getMinutes();
+            let Currentsec = Currentdate.getSeconds();
+
+            if (Currenthours > 12) {
+
+                Currenthours -= 12;
+                document.getElementById("hr").innerHTML = Currenthours
+                document.getElementById("min").innerHTML = Currentminute
+                document.getElementById("sec").innerHTML = Currentsec
+                document.getElementById("ampm").innerHTML = "PM"
+
+            } else if (Currenthours == 12) {
+
+                document.getElementById("hr").innerHTML = Currenthours
+                document.getElementById("min").innerHTML = Currentminute
+                document.getElementById("sec").innerHTML = Currentsec
+                document.getElementById("ampm").innerHTML = "PM"
+
+            } else {
+                document.getElementById("hr").innerHTML = Currenthours
+                document.getElementById("min").innerHTML = Currentminute
+                document.getElementById("sec").innerHTML = Currentsec
+                document.getElementById("ampm").innerHTML = "AM"
+            }
+        }
+
+        setInterval(updateclock, 1000)
+        updateclock();
+    </script>
+</body>
+
+</html>

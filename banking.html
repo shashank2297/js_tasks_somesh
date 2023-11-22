@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fHeader {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .fHeader img {
+            width: 53px;
+            height: auto;
+            margin-left: 130px;
+        }
+
+        .fHeader input {
+            border-radius: 20px;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid silver;
+        }
+
+        .fHeader button {
+            height: 35px;
+            width: 60px;
+            font-size: 15px;
+            background-color: none;
+            border-radius: 20px;
+            border: none;
+        }
+
+        .fMain {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .fMain h2 {
+            font-size: 35px;
+        }
+
+        .fMain h1,
+        .fMain p {
+            margin: 0;
+        }
+
+        .fMain h1 {
+            margin-top: 20px;
+        }
+
+        .tSection {
+            margin: 0 0 0 500px;
+        }
+
+        #mbody {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fHeader">
+        <p>Login to get Started</p>
+        <img src="./assests/istockphoto-644095912-1024x1024.jpg" alt="three rings">
+        <div>
+            <input type="text" placeholder="user" id="user">
+            <input type="text" placeholder="pin" id="pin">
+            <button onclick="log()">Login</button>
+            <p id="error"></p>
+        </div>
+    </div>
+    <section id="mbody">
+        <div class="fMain">
+            <div>
+                <h1>Current Balance</h1>
+                <p>As of today</p>
+            </div>
+            <h2 id="cr">3000$</h2>
+        </div>
+        <section class="tSection">
+            <div>
+                <p>Transfer Money</p>
+                <input type="text" name="transferName" id="transferName">
+                <input type="text" name="transferAmt" id="transferAmt">
+                <button onclick="tm()">Go</button>
+                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTransfer
+                    To<span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAmount</span>
+                </p>
+            </div>
+            <div>
+                <p>Request Loan</p>
+                <input type="text" name="transferLoan" id="transferLoan">
+                <button onclick="rl()">Go</button>
+                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAmount</p>
+            </div>
+            <div>
+                <p>Close Account</p>
+                <input type="text" name="cuser" id="cuser" placeholder="user">
+                <input type="text" name="cid" id="cid" placeholder="id">
+                <button onclick="cl()">Go</button>
+            </div>
+        </section>
+    </section>
+    <div id="trdetails"></div>
+    <script>
+
+        function log() {
+            let user = String(document.getElementById("user").value);
+            let pin = Number(document.getElementById("pin").value);
+
+            if ((user === "shash") && (pin === 1234)) {
+                document.getElementById("mbody").style.display = "block";
+
+            } else {
+                document.getElementById("error").innerHTML = "Invalid user or pin"
+            }
+        }
+
+        let currentBalance = 3000;
+
+        function tm(){
+            
+            let transferMoney = Number(document.getElementById("transferAmt").value);
+            let transferName = document.getElementById("transferName").value;
+
+            currentBalance = currentBalance - transferMoney;
+
+            document.getElementById("cr").innerText = currentBalance + "$";
+
+            document.getElementById("transferAmt").value=""
+            document.getElementById("transferName").value=""
+
+            let p = document.createElement("p")
+            
+            p.innerText = "Amount transferred to " + transferName + " " +  transferMoney + "$"
+
+            document.getElementById("trdetails").appendChild(p);
+        }
+
+        function rl(){
+
+            let transferLoan = Number(document.getElementById("transferLoan").value);
+
+            currentBalance = currentBalance + transferLoan;
+
+            document.getElementById("cr").innerText = currentBalance + "$";
+
+            document.getElementById("transferLoan").value=""
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication</title>
+    <style>
+        .mul {
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 100px;
+            font-size: 28px;
+            background-color: aqua;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: auto;
+        }
+
+        input {
+            margin: 0 20px 10px 20px;
+            font-size: 30px;
+            text-align: center;
+            height: 60px;
+            border: 3px solid green;
+        }
+        button{
+            margin: 0 20px 50px 20px;
+            height: 50px;
+            border-radius: 15px;
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 20px;
+            padding: 10px;
+        }
+        .mul p{
+            margin: 10px 0 0 200px;
+        }
+        h2{
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body onload="intialize()">
+    <div class="mul">
+        <p id="score">Score: 2</p>
+        <h2></h2>
+        <input type="text" placeholder="Enter your answer"><br>
+        <button onclick="sub()">Submit</button>
+    </div>
+    <script>
+
+        let score = 2;
+        let firstdg,seconddg;
+
+        function intialize(){
+        firstdg = Math.floor((Math.random() * 10) + 1);
+        seconddg = Math.floor((Math.random() * 10) + 1);
+        updatequestion();
+        }
+
+        function updatequestion(){
+            document.getElementsByTagName("h2")[0].innerHTML = "What is " + firstdg + " by " + seconddg + " ?";
+        }
+
+        function sub() {
+
+            let answer = Number(document.getElementsByTagName("input")[0].value)
+            let result = firstdg * seconddg;
+
+            console.log(result);
+
+            if (answer === result) {
+                score++;
+                document.getElementsByTagName("input")[0].value = ""
+                document.getElementById("score").innerHTML = " Score: " + score;
+                firstdg = Math.floor((Math.random() * 10) + 1);
+                seconddg = Math.floor((Math.random() * 10) + 1);
+                document.getElementsByTagName("h2")[0].innerHTML = "What is " + firstdg + " by " + seconddg + " ?";
+            } else {
+                score--;
+                document.getElementsByTagName("input")[0].value = ""
+                document.getElementById("score").innerHTML = " Score: " + score;
+                firstdg = Math.floor((Math.random() * 10) + 1);
+                seconddg = Math.floor((Math.random() * 10) + 1);
+                document.getElementsByTagName("h2")[0].innerHTML = "What is " + firstdg + " by " + seconddg + " ?";
+            }
+        }
+    </script>
+
+   
+</body>
+
+</html>
